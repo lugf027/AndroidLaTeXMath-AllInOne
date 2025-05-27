@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import io.nano.tex.LaTeX;
 
@@ -23,6 +25,21 @@ public class MainActivity extends AppCompatActivity {
         samples = new Samples(this);
         samples.readSamples();
         texView = findViewById(R.id.tex);
+
+        TextView nextSampleView = findViewById(R.id.next_sample_btn);
+        nextSampleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextSample();
+            }
+        });
+        TextView redrawView = findViewById(R.id.redraw);
+        redrawView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                texView.invalidateRender();
+            }
+        });
     }
 
     @Override
